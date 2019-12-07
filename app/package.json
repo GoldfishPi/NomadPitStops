@@ -1,0 +1,27 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "My excellent Nuxt.js project",
+  "author": "Erik Badger\n",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@nuxt/types": "^0.5.3",
+    "@nuxt/typescript-build": "^0.3.10",
+    "@nuxt/typescript-runtime": "^0.2.10",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.0.0",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0",
+    "vue-jest": "^4.0.0-0"
+  }
+}
