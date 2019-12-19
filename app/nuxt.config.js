@@ -42,6 +42,7 @@ export default {
      ** Nuxt.js modules
      */
     modules: [
+        '@nuxtjs/apollo'
     ],
     /*
      ** vuetify module configuration
@@ -61,6 +62,20 @@ export default {
                     error: colors.deepOrange.accent4,
                     success: colors.green.accent3
                 }
+            }
+        }
+    },
+
+    /*
+     * Apollo module configuration
+     */
+    apollo: {
+        clientConfigs: {
+            default: {
+                httpEndpoint:'http://localhost:3001/graphql'
+            },
+            blog: {
+                httpEndpoint:'http://nomadpitstops.prismic.io/graphql'
             }
         }
     },
