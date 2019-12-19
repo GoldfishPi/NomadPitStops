@@ -3,3 +3,4 @@ node_modules
 .prettierrc.js
 .dist/
 /src/firebase-admin.json
+

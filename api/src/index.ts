@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import { firebaseAdmin } from "./helpers/firebase";
-import { connect } from "./helpers/db";
+import { connectDb } from "./helpers/db";
 import { buildSchema } from "type-graphql";
 import {  GlobalUserResolver } from "./resolvers/user";
 import { GlobalPitstopResolver, PitstopResolver } from "./resolvers/pitstop";
@@ -11,7 +11,7 @@ const express = require('express');
 
 const bootstrap = async () => {
     const port = process.env.PORT || 3001;
-    await connect();
+    await connectDb();
     const schema = await buildSchema({
         resolvers:[
             GlobalUserResolver,
@@ -40,6 +40,7 @@ const bootstrap = async () => {
     });
 
     const app = express();
+    app.get('/', (_:any, res:any) => res.send('hello world'));
     server.applyMiddleware({app});
 
     app.listen(port);

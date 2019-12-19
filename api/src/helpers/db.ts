@@ -1,15 +1,27 @@
-const mongoose = require('mongoose');
 const creds = require('../config.json');
+import { connect, connection } from "mongoose";
 
-export const connect = () => {
-    mongoose.connect(
-        `mongodb://${creds.db_username}:${
-        creds.db_password
-    }@ds139243.mlab.com:39243/nomad_pitstops`
-    );
-    mongoose.connection.on('connected', function() {
-        console.log('Connected to db');
+export const connectDb = async () => {
+    const dbConfig = creds.db;
+    let tries = 5;
+    const usernamePassword = dbConfig.username ? `${dbConfig.username}:${dbConfig.password}@` : ``;
+
+    connection.on('connected', function() {
+        console.log('CONNECTED TO DB');
     });
 
-    module.exports = mongoose;
+    while(tries > 0) {
+        try {
+            await connect(
+                `mongodb://${usernamePassword}${dbConfig.url}`,
+                { useNewUrlParser: true }
+            );
+            break;
+        } catch(e) {
+            console.log(e);
+            console.log('failed to connect to db: ', tries);
+            tries --;
+            await new Promise(res => setTimeout(res, 5000));
+        }
+    }
 }

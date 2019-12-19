@@ -1,0 +1,25 @@
+version: "3.7"
+
+services: 
+    mongo:
+        container_name: mongo
+        image: mongo
+        restart: always
+
+        volumes:
+            ['/private/var/services/mongodb:/data/db']
+
+        ports:
+            - '27017:27017'
+    api:
+        image: np-api
+        tty: true
+        stdin_open: true
+        restart: always
+        depends_on:
+            - mongo
+        links:
+            - mongo
+        ports:
+            - '3001:3001'
+
