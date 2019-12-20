@@ -75,7 +75,15 @@ export default {
                 httpEndpoint:'http://localhost:3001/graphql'
             },
             blog: {
-                httpEndpoint:'http://nomadpitstops.prismic.io/graphql'
+                httpEndpoint:'http://nomadpitstops.prismic.io/graphql',
+                httpLinkOptions: {
+                    useGETForQueries:true
+                },
+                apollo:{
+                    defaultOptions: {
+                        useGETForQueries:true
+                    }
+                }
             }
         }
     },
