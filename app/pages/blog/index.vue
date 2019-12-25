@@ -3,7 +3,7 @@
         v-card(
             v-for="post in posts" 
             :key="post.id" 
-            :href="`/blog/${post.uid}`"
+            :to="`/blog/${post.uid}`"
             flat
             outlined
             )
@@ -13,7 +13,7 @@
             v-card-text
                 | {{ post.snippet }}
             v-card-actions
-                v-btn(color="primary" text :href="`/blog/${post.uid}`")
+                v-btn(color="primary" text :to="`/blog/${post.uid}`")
                     | Read More
 </template>
 
