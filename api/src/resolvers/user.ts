@@ -6,6 +6,7 @@ import { User } from "../typeDefs/user";
 export class GlobalUserResolver {
     @Query(() => [User])
     async users() {
+        console.log('get users lol');
         return await UserModel.find({});
     }
     @Mutation(() => User)

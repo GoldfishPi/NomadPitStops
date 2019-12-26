@@ -1,11 +1,15 @@
 FROM node
 
 # Create app directory
-WORKDIR /usr/src
+#WORKDIR /usr/src
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
+
+RUN mkdir /api
+WORKDIR /api
+
 COPY package*.json ./
 
 RUN npm install
@@ -13,12 +17,12 @@ RUN npm install
 # RUN npm ci --only=production
 
 # Bundle app source
-COPY . .
+#COPY . .
 
-RUN npm run build
-COPY ./src/config.docker.json ./dist/src/config.json
-COPY ./src/firebase-admin.json ./dist/src/
-WORKDIR ./dist
+#RUN npm run build
+# COPY ./src/config.docker.json ./dist/src/config.json
+# COPY ./src/firebase-admin.json ./dist/src/
+# WORKDIR ./dist
 
 EXPOSE 3001
-CMD node src/index.js
+CMD npm run dev

@@ -12,7 +12,9 @@ services:
         ports:
             - '27017:27017'
     api:
-        image: np-api
+        build:
+            context: api
+            dockerfile: Dockerfile
         tty: true
         stdin_open: true
         restart: always
@@ -22,4 +24,9 @@ services:
             - mongo
         ports:
             - '3001:3001'
+        volumes:
+            - './api:/api'
+            - '/api/node_modules'
+        environment:
+            - CHOKIDAR_USEPOLLING=true
 
