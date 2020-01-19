@@ -1,16 +1,26 @@
 <template lang="pug">
-    div.pitstops
-        v-card(v-for="p of pitstops" :to="`/pitstops/${p.id}`" flat outlined)
-            v-img(v-if="p.images.length > 0" src="p.images[0].link")
-            v-card-title {{p.name}}
-            v-card-text {{p.notes}}
+    div
+        v-btn(rounded @click="dialog = true") +
+        PitstopDialog(:active="dialog" @close="dialog = false")
+        div.pitstops
+            v-card(v-for="p of pitstops" :to="`/pitstops/${p.id}`" flat outlined)
+                v-img(v-if="p.images.length > 0" src="p.images[0].link")
+                v-card-title {{p.name}}
+                v-card-text {{p.notes}}
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import gql from "graphql-tag";
+import PitstopDialog from "../../components/dialogs/PitstopDialog/index.vue";
 
 export default Vue.extend({
+    data:() => ({
+        dialog:false
+    }),
+    components: {
+        PitstopDialog
+    },
     async asyncData(context) {
         const query = gql`
             {

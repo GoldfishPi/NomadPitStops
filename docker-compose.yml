@@ -12,12 +12,13 @@ services:
         ports:
             - '27017:27017'
     api:
-        build:
-            context: api
-            dockerfile: Dockerfile
+        container_name: api
         tty: true
         stdin_open: true
         restart: always
+        build:
+            context: api
+            dockerfile: Dockerfile
         depends_on:
             - mongo
         links:
@@ -29,4 +30,23 @@ services:
             - '/api/node_modules'
         environment:
             - CHOKIDAR_USEPOLLING=true
-
+            - dev=false
+    app:
+        container_name: app
+        tty: true
+        stdin_open: true
+        restart: always
+        build:
+            context: app
+            dockerfile: Dockerfile
+        depends_on:
+            - api
+        links:
+            - api
+        volumes:
+            - './app:/app'
+            - '/app/node_modules'
+        ports:
+            - '3005:3005'
+        command:
+            'yarn dev'

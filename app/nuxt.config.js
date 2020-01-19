@@ -11,10 +11,15 @@ export default {
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+            { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+            { name: 'google-site-verification', content:'9VGw1vGDng4XjENSPsdsIUp3wLu3s9mSc7-VD2boKO8' },
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            {
+                rel: 'stylesheet',
+                href: 'https://use.fontawesome.com/releases/v5.6.3/css/all.css'
+            }
         ]
     },
     /*
@@ -30,7 +35,9 @@ export default {
      ** Plugins to load before mounting the App
      */
     plugins: [
+        //{ src: '~plugins/maps.js', ssr: true },
     ],
+
     /*
      ** Nuxt.js dev-modules
      */
@@ -72,19 +79,8 @@ export default {
     apollo: {
         clientConfigs: {
             default: {
-                httpEndpoint:'http://localhost:3001/graphql'
+                httpEndpoint:'http://api:3001/graphql'
             },
-            blog: {
-                httpEndpoint:'http://nomadpitstops.prismic.io/graphql',
-                httpLinkOptions: {
-                    useGETForQueries:true
-                },
-                apollo:{
-                    defaultOptions: {
-                        useGETForQueries:true
-                    }
-                }
-            }
         }
     },
     /*

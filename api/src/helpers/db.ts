@@ -1,4 +1,7 @@
-const creds = require('../config.json');
+const creds = process.env.dev == 'true' ? 
+    require('../config.docker.json') : 
+    require('../config.json');
+
 import { connect, connection } from "mongoose";
 
 export const connectDb = async () => {
