@@ -7,7 +7,7 @@ services:
         restart: always
 
         volumes:
-            ['/private/var/services/mongodb:/data/db']
+            - './.db/mongo'
 
         ports:
             - '27017:27017'
@@ -50,3 +50,25 @@ services:
             - '3005:3005'
         command:
             'yarn dev'
+    user_db:
+        container_name: user_db
+        image: mongo
+        volumes:
+            - './.db/user:/data/db'
+        ports:
+            - '27018:27018'
+        command: mongod --port 27018
+    user_service:
+        container_name: user_service
+        build:
+            context: services/user
+        depends_on:
+            - user_db
+        links:
+            - user_db
+        ports:
+            - '3000:3000'
+        volumes:
+            - './services/user:/user'
+            - './services/user/node_modules'
+

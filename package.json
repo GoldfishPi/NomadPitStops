@@ -7,7 +7,7 @@
         "packages":[
             "app",
             "api",
-            "services/auth"
+            "services/user"
         ]
     }
 }

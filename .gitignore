@@ -1,4 +1,8 @@
 node_modules
+.db/
 api/dist
 api/src/config.json
 api/src/firebase-admin.json
+**/.dist/
+**/.dist/
+services/user/dist/
