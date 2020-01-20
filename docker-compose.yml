@@ -70,5 +70,4 @@ services:
             - '3000:3000'
         volumes:
             - './services/user:/user'
-            - './services/user/node_modules'
 

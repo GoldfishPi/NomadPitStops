@@ -3,7 +3,7 @@ FROM  node:12
 RUN mkdir /user
 WORKDIR /user
 
-ENV PORT 3010
+ENV PORT 3000
 ENV HOST 0.0.0.0
 
 COPY package.json .

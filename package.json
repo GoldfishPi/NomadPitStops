@@ -1,10 +1,10 @@
 {
     "private": true,
     "workspaces": {
-        "nohoist":[
+        "nohoist": [
             "**/typescript/**"
         ],
-        "packages":[
+        "packages": [
             "app",
             "api",
             "services/user"
