@@ -1,18 +1,14 @@
-FROM  node:12
 
-RUN mkdir /user
-WORKDIR /user
+FROM node
 
-ENV PORT 3000
-ENV HOST 0.0.0.0
+RUN mkdir -p /services/user
+WORKDIR /services/user
 
-COPY package.json .
-COPY tsconfig.json .
-COPY . .
-#COPY yarn.lock .
-
+COPY package.json /services/user
 RUN npm install
 
-RUN npm run build
+COPY . /services/user
+
 EXPOSE 3000
-CMD npm run dev
+
+CMD [ "npm", "run", "dev" ]

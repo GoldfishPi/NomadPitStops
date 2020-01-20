@@ -23,6 +23,7 @@ services:
             - mongo
         links:
             - mongo
+            - user_service
         ports:
             - '3001:3001'
         volumes:
@@ -60,6 +61,8 @@ services:
         command: mongod --port 27018
     user_service:
         container_name: user_service
+        tty: true
+        stdin_open: true
         build:
             context: services/user
         depends_on:
@@ -69,5 +72,5 @@ services:
         ports:
             - '3000:3000'
         volumes:
-            - './services/user:/user'
+            - './services/user/src:/services/user/src'
 
